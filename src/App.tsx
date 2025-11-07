@@ -10,6 +10,9 @@ interface SSEData {
   user: string
   wiki: string
 }
+
+// 如果不能正常调试请拉到本地进行调试
+// if you can't debug normally, please pull to local for debugging
 function App() {
   const [data, setData] = useState<SSEData[]>([])
 
