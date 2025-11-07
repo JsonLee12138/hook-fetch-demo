@@ -60,6 +60,7 @@ request.use(
   sseTextDecoderPlugin({
     json: true,
     prefix: 'data:',
+    lineSeparator: '\n',
   })
 );
 request.use(authPlugin as HookFetchPlugin);

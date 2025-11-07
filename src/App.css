@@ -1,8 +1,9 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  width: 100%;
+  /* padding: 2rem; */
   text-align: center;
+  overflow: hidden;
 }
 
 .logo {
@@ -39,4 +40,124 @@
 
 .read-the-docs {
   color: #888;
+}
+
+/* SSE demo styles */
+.sse-page {
+  min-height: 100vh;
+  background: #f6f7fb;
+  padding: 24px 16px 28vh;
+}
+
+.sse-container {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.sse-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.sse-subtitle {
+  margin: 8px 0 16px;
+  color: #6b7280;
+}
+
+.sse-list {
+  max-height: 60vh;
+  overflow-y: auto;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.sse-empty {
+  padding: 28px 8px;
+  text-align: center;
+  color: #9ca3af;
+}
+
+.sse-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.sse-card {
+  background: #ffffff;
+  border: 1px solid #eef0f3;
+  border-radius: 12px;
+  padding: 12px 14px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 2px 10px rgba(17, 24, 39, 0.06);
+}
+
+.sse-card-header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.sse-index {
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.sse-link {
+  color: #111827;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.sse-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+  font-size: 12px;
+  color: #4b5563;
+}
+
+.sse-badge {
+  background: #f3f4f6;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.sse-floating-bar {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 10vh;
+  display: flex;
+  gap: 12px;
+  z-index: 50;
+}
+
+.sse-btn {
+  min-width: 220px;
+  height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.sse-btn--primary {
+  border: 1px solid #0ea5e9;
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.35);
+}
+
+.sse-btn--secondary {
+  border: 1px solid #d1d5db;
+  background: #f3f4f6;
+  color: #111827;
+  font-weight: 600;
 }
