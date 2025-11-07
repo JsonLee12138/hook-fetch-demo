@@ -19,7 +19,7 @@ async function refreshToken() {
       {
         refresh_token: Token.refreshToken,
       },
-      { extra: { isRefreshToken: true } }
+      { extra: { disableAuth: true } }
     )
     .json();
 
@@ -28,7 +28,7 @@ async function refreshToken() {
     Token.setRefreshToken(response.data.refresh_token);
   }
 }
-const authPlugin: HookFetchPlugin = {
+const authPlugin: HookFetchPlugin<unknown, { disableAuth: boolean }> = {
   name: 'auth',
 
   beforeRequest(ctx) {
@@ -39,10 +39,10 @@ const authPlugin: HookFetchPlugin = {
       headers,
     };
   },
-  async onError(ctx) {
+  async onError(ctx, config) {
     const { status } = ctx;
     if (status === 401) {
-      if ((ctx.config?.extra as { isRefreshToken: boolean })?.isRefreshToken) {
+      if(config?.extra?.disableAuth){
         emitter.emit('refresh_token_expired');
       } else {
         await refreshToken();
@@ -52,16 +52,6 @@ const authPlugin: HookFetchPlugin = {
     return ctx;
   },
   async afterResponse(ctx) {
-    // const { status } = ctx.response;
-    // if (status === 401) {
-    //   if (ctx.config.url.includes('/refresh-token')) {
-    //     emitter.emit('refresh_token_expired');
-    //   }
-    //   else {
-    //     await refreshToken();
-    //   }
-    //   throw new Error('Unauthorized');
-    // }
     return ctx;
   },
 };
@@ -74,22 +64,12 @@ request.use(
 );
 request.use(authPlugin as HookFetchPlugin);
 
-export const post = request.post;
+const post = request.post;
 
-export const get = request.get;
+const get = request.get;
 
-export const put = request.put;
+const put = request.put;
 
-export const del = request.delete;
+const del = request.delete;
 
-export { request };
-// curl --location 'http://difyplus.innerfireai.com:30080/v1/chat-messages' \
-// --header 'Authorization: Bearer app-WUBghZNBevDaUBUeZcBqMAo2' \
-// --header 'Content-Type: application/json' \
-// --data '{
-//     "inputs": {},
-//     "query": "{\"context\": {\"action\": \"start_practice\"}, \"chat_history\": []}",
-//     "response_mode": "blocking",
-//     "conversation_id": "",
-//     "user": "f494e972-d0ae-4ba9-b57c-5ff7a31643ae"
-// }'
+export { request, post, get, put, del };
